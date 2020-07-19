@@ -41,5 +41,7 @@
         "yargs": "^4.6.0",
         "tailwindcss": "^1.4.6"
     },
-    "dependencies": {}
+    "dependencies": {
+        "faunadb": "^2.14.2"
+    }
 }
