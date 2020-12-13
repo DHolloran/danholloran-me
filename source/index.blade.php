@@ -21,15 +21,15 @@
             @foreach ($projects->reject(function($project) {
             return (bool) $project->draft ?? false;
             }) as $project)
-            <li class="px-4 mb-6 lg:w-1/3 sm:w-1/2 w-full">
-                <div class="flex flex-col w-full h-full overflow-hidden bg-white rounded-lg shadow">
+            <li class="px-4 mb-6 lg:w-1/3 sm:w-1/2 w-full dark:text-white">
+                <div class="flex flex-col w-full h-full overflow-hidden bg-white dark:bg-gray-900 rounded-lg shadow">
                     <a href="{{ $project->getUrl() }}" class="block w-full">
                         <img loading="lazy" src="{{ $project->thumbnail_image }}" alt="{{ $project->title }} thumbnail"
                             class="object-cover w-full" width="408" height="189">
                     </a>
                     <div class="px-6 py-6 mb-auto">
                         <h3 class="mb-0 text-lg">
-                            <a class="text-gray-900" href="{{ $project->getUrl() }}">
+                            <a class="text-gray-900 dark:text-white" href="{{ $project->getUrl() }}">
                                 {{ $project->title }}
                             </a>
                         </h3>
@@ -60,35 +60,37 @@
 </div>
 
 {{-- Skills &amp; Tools --}}
-<div class="skills-tools container px-6 mx-auto my-16">
-    <ul class="flex flex-wrap -mx-1">
-        @foreach ($skills->reject(function($item) {
-        return (bool) $item->draft ?? false;
-        }) as $item)
-        <li class="flex items-center justify-center w-1/2 px-4 py-6 md:w-1/4 lg:w-1/5 sm:w-1/3">
-            @if($item->url ?? null)
-            <a href="{{ $item->url }}" target="blank" rel="noopener noreferrer">
-                {!! $item->getContent() !!}
-                <span class="sr-only">{{ $item->title }}</span>
+<div class="my-16 dark:mb-0 dark:bg-gray-100 dark:py-10">
+    <div class="skills-tools container px-6 mx-auto">
+        <ul class="flex flex-wrap -mx-1">
+            @foreach ($skills->reject(function($item) {
+            return (bool) $item->draft ?? false;
+            }) as $item)
+            <li class="flex items-center justify-center w-1/2 px-4 py-6 md:w-1/4 lg:w-1/5 sm:w-1/3">
+                @if($item->url ?? null)
+                <a href="{{ $item->url }}" target="blank" rel="noopener noreferrer">
+                    {!! $item->getContent() !!}
+                    <span class="sr-only">{{ $item->title }}</span>
+                </a>
+                @else
+                <div class="flex">
+                    {!! $item->getContent() !!}
+                    <span class="sr-only">{{ $item->title }}</span>
+                </div>
+                @endif
+            </li>
+            @endforeach
+        </ul>
+        <div class="pt-8 text-center">
+            <a href="/badges/" class="inline-flex button button-secondary button-large">
+                Development Merit Badges
             </a>
-            @else
-            <div class="flex">
-                {!! $item->getContent() !!}
-                <span class="sr-only">{{ $item->title }}</span>
-            </div>
-            @endif
-        </li>
-        @endforeach
-    </ul>
-    <div class="pt-8 text-center">
-        <a href="/badges/" class="inline-flex button button-secondary button-large">
-            Development Merit Badges
-        </a>
+        </div>
     </div>
 </div>
 
 {{-- Experience --}}
-<div class="py-10 bg-gray-100">
+<div class="py-10 bg-gray-100 dark:bg-gray-900 dark:text-white">
     <div class="container max-w-4xl px-6 mx-auto" v-cloak>
         <agile class="mb-6" :options="{
                     fade: true,
@@ -136,7 +138,7 @@
 <div class="container flex flex-wrap max-w-4xl px-6 py-10 mx-auto">
     @foreach ($pages->where('featured', true)->whereNotNull('cover_image') as $featuredPage)
     <a href="{{ $featuredPage->getUrl() }}" class="relative block h-64 md:w-1/2">
-        <h3 class="absolute inset-0 flex items-center justify-center m-0 text-white z-10">
+        <h3 class="absolute inset-0 flex items-center justify-center m-0 z-10">
             {{ $featuredPage->title }}
         </h3>
         <div class="absolute bg-primary-400 inset-0 opacity-75 z-0"></div>
@@ -212,12 +214,14 @@
 </div>
 
 {{-- Books --}}
-<div class="container max-w-4xl px-6 pt-10 mx-auto py-10">
-    <h2>What I'm Reading</h2>
-    @include('_partials.currently-reading')
+<div class="dark:text-white dark:bg-gray-900">
+    <div class="container max-w-4xl px-6 pt-10 mx-auto py-10">
+        <h2>What I'm Reading</h2>
+        @include('_partials.currently-reading')
 
-    <div class="text-center">
-        <a href="/books" class="button button-secondary button-large">View All</a>
+        <div class="text-center">
+            <a href="/books" class="button button-secondary button-large">View All</a>
+        </div>
     </div>
 </div>
 
@@ -239,20 +243,22 @@
 </div> --}}
 
 {{-- Blog --}}
-<div class="container px-6 pt-10 mx-auto">
-    @foreach ($posts->where('featured', false)->take(4)->chunk(2) as $row)
-    <div class="flex flex-col md:flex-row md:-mx-6">
-        @foreach ($row as $post)
-        <div class="w-full md:w-1/2 md:mx-6">
-            @include('_components.post-preview-inline')
+<div class="dark:text-white dark:bg-gray-900 dark:py-10">
+    <div class="container px-6 pt-10 mx-auto">
+        @foreach ($posts->where('featured', false)->take(4)->chunk(2) as $row)
+        <div class="flex flex-col md:flex-row md:-mx-6">
+            @foreach ($row as $post)
+            <div class="w-full md:w-1/2 md:mx-6">
+                @include('_components.post-preview-inline')
+            </div>
+
+            @endforeach
         </div>
-
         @endforeach
-    </div>
-    @endforeach
 
-    <div class="pt-12 text-center">
-        <a href="/blog/" class="button button-secondary button-large">More Posts</a>
+        <div class="pt-12 text-center">
+            <a href="/blog/" class="button button-secondary button-large">More Posts</a>
+        </div>
     </div>
 </div>
 @stop

@@ -1,5 +1,5 @@
 <div class="flex flex-col mb-4">
-    <p class="text-gray-700 font-medium my-2">
+    <p class="text-gray-700 dark:text-white font-medium my-2">
         @if ($post->getDate())
             {{ $post->getDate()->format('F j, Y') }}
         @endif
@@ -9,7 +9,7 @@
         <a
             href="{{ $post->getUrl() }}"
             title="Read more - {{ $post->title }}"
-            class="text-gray-900 font-extrabold"
+            class="font-extrabold"
         >{{ $post->title }}</a>
     </h2>
 

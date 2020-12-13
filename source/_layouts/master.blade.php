@@ -56,14 +56,14 @@ $full_width = in_array($page->getPath(), ['', '/resume', '/banner']);
     <link rel="stylesheet" href="{{ mix('css/main.css', 'assets/build') }}">
 </head>
 
-<body class="theme-{{ $page->theme }}">
+<body class="theme-{{ $page->theme }} dark">
     <div id="app"
-        class="flex flex-col justify-between min-h-screen bg-topographic leading-normal font-sans antialiased">
+        class="flex flex-col justify-between min-h-screen bg-topographic dark:bg-gray-900 leading-normal font-sans antialiased">
         <header class="flex items-center md:h-24 py-4 print-hidden" role="banner">
             <div class="container flex flex-wrap items-center max-w-7xl mx-auto px-4 lg:px-8">
                 <div class="w-full sm:w-1/3 md:w-auto justify-center flex mb-4 md:mb-0">
                     <a href="/" title="{{ $page->siteName }} home"
-                        class="inline-flex items-center text-primary-800 font-semibold hover:text-primary-700 text-lg md:text-2xl">
+                        class="inline-flex items-center text-primary-800 dark:text-white font-semibold hover:text-primary-700 text-lg md:text-2xl">
                         <span class="sr-only">{{ $page->siteName }}</span>
                         @include('_partials.logo')
                     </a>
@@ -80,11 +80,11 @@ $full_width = in_array($page->getPath(), ['', '/resume', '/banner']);
 
         {{-- @include('_nav.menu-responsive') --}}
         <main role="main"
-            class="main flex-auto w-full {{ $full_width ? '' : 'container max-w-4xl mx-auto px-6' }} py-16">
+            class="main flex-auto w-full {{ $full_width ? '' : 'container max-w-4xl mx-auto px-6' }} py-16 dark:pb-0">
             @yield('body')
         </main>
 
-        <footer class="text-center text-sm mt-12 py-4 print-hidden" role="contentinfo">
+        <footer class="text-center text-sm mt-12 py-4 print-hidden dark:mt-0 dark:bg-gray-900 dark:text-white" role="contentinfo">
             <ul class="flex flex-col md:flex-row justify-center list-reset">
                 <li class="md:mr-2">
                     &copy; Dan Holloran {{ date('Y') }}.

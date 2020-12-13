@@ -39,7 +39,7 @@ h3,
 h4,
 h5,
 h6 {
-  @apply mt-8 mb-4 leading-tight text-gray-900;
+  @apply mt-8 mb-4 leading-tight text-gray-900 dark:text-white;
 
   &:first-child {
     @apply mt-0;
@@ -202,6 +202,14 @@ svg {
   &:focus,
   &:active {
     @apply text-primary-500 border-primary-500;
+  }
+
+  .dark & {
+    @apply button-primary;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    @apply button-primary;
   }
 }
 

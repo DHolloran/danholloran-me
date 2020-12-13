@@ -2,6 +2,7 @@ const colors = require("tailwindcss/colors");
 const defaultTheme = require("tailwindcss/defaultTheme");
 
 module.exports = {
+    darkMode: "class",
     purge: {
         content: ["./source/**/*{.html,.md,.vue,.js,.php}"],
 
@@ -47,7 +48,9 @@ module.exports = {
     variants: {
         borderRadius: ["responsive", "focus"],
         borderWidth: ["responsive", "active", "focus"],
-        width: ["responsive", "focus"]
+        width: ["responsive", "focus"],
+        padding: ["responsive", "dark"],
+        margin: ["responsive", "dark"]
     },
     plugins: [
         function({ addUtilities }) {
